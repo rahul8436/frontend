@@ -76,6 +76,22 @@ import { UserRole } from '../../../../core/models/user.model';
               >Password must be at least 8 characters</span
             >
           </div>
+          <select class="auth-input" formControlName="role" required>
+            <option [ngValue]="UserRole.VIEWER">Viewer</option>
+            <option [ngValue]="UserRole.EDITOR">Editor</option>
+            <option [ngValue]="UserRole.ADMIN">Admin</option>
+          </select>
+          <div
+            class="auth-error"
+            *ngIf="
+              registerForm.get('role')?.invalid &&
+              registerForm.get('role')?.touched
+            "
+          >
+            <span *ngIf="registerForm.get('role')?.hasError('required')"
+              >Role is required</span
+            >
+          </div>
           <button
             class="auth-btn"
             type="submit"
